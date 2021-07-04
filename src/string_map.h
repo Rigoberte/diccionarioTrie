@@ -85,8 +85,19 @@ private:
         T* definicion;
         Nodo(): siguientes(256, nullptr), definicion() {}
         Nodo(T* def): siguientes(256, nullptr), definicion(def) {}
+        void destruir(Nodo* nodo){
+            if (nodo != nullptr){
+                for (int i = 0; i < 256; ++i) {
+                    if (nodo->siguientes[i] != nullptr){
+                        destruir(nodo->siguientes[i]);
+                    }
+                }
+                delete nodo->definicion;
+                delete nodo;
+            }
+        }
     };
-
+    set<string> _clavesDefinidas;
     Nodo* raiz;
     int _size;
 };
