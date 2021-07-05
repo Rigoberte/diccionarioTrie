@@ -60,6 +60,9 @@ void string_map<T>::insert(const pair<string, T>& value_type) {
             if (i == clave_.first.size()-1)
             {
                 nodo_iesimo = nodo_iesimo->siguientes[valorEnASCII];
+                if (nodo_iesimo->definicion != nullptr){
+                    delete nodo_iesimo->definicion;
+                }
                 nodo_iesimo->definicion = signi;
             }
         }
